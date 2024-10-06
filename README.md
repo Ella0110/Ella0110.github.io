@@ -33,7 +33,7 @@
     - Install C# Dev Kit (The [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [.NET Install Tool](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime) will automatically be installed)
 2. Install dotnet sdk 8.0
     
-     [Download .NET 8.0 SDK(v8.0.402)-macOs x64 Installer](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.402-macos-x64-installer)
+     Reference Link: [Download .NET 8.0 SDK(v8.0.402)-macOs x64 Installer](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.402-macos-x64-installer)
     
 
 ### Create ASP.Net Web API Project
@@ -51,7 +51,7 @@ There are two ways to create a Web API project:
         
 2. Create with terminal
     
-    [Tutorial: Create a web API with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code)
+    Reference Link: [Tutorial: Create a web API with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code)
     
     1. Open terminal, change directories (`cd`) to the folder that will contain the project folder. The project template creates a `WeatherForecast` API with support for [Swagger](https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0).
         
@@ -266,7 +266,7 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
     ```
     
 
-6. Links: 
+6. Reference Link: 
 
     [How YOU can use an ORM in .NET Core and C# to type less SQL](https://softchris.github.io/pages/dotnet-orm.html#resources)
 
@@ -274,7 +274,7 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
 
 ### Add Controller
 
-  [Tutorial: Create a web API with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code)
+  Reference Link: [Tutorial: Create a web API with ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code)
 
 1. Create Controller, run the following code to create Controllers folder with file HotelsController.cs.
     
@@ -521,9 +521,9 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
 
 ### Automatically Initialise Database
 
-[How and where to call Database.EnsureCreated and Database.Migrate?](https://stackoverflow.com/questions/38238043/how-and-where-to-call-database-ensurecreated-and-database-migrate)
+Reference Link: [How and where to call Database.EnsureCreated and Database.Migrate?](https://stackoverflow.com/questions/38238043/how-and-where-to-call-database-ensurecreated-and-database-migrate)
 
-[Create the database](https://learn.microsoft.com/en-nz/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#create-the-database)
+Reference Link: [Create the database](https://learn.microsoft.com/en-nz/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#create-the-database)
 
 1. Change program.cs, add `Migrate()` to create database, apply migration and seed data.
 
@@ -744,13 +744,13 @@ _NCrunch*
         
     3. Add different table join
 
-        [Eager Loading of Related Data](https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager)
+        Reference Link: [Eager Loading of Related Data](https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager)
         
         <img width="332" alt="join" src="https://github.com/user-attachments/assets/bfe05743-e8da-459c-b670-b289d8d62ab9">
         
     4. Add SQL `LIKE` operation: **EF.Functions.Like**
 
-        [Entity framework EF.Functions.Like vs string.Contains](https://stackoverflow.com/questions/45708715/entity-framework-ef-functions-like-vs-string-contains)
+        Reference Link: [Entity framework EF.Functions.Like vs string.Contains](https://stackoverflow.com/questions/45708715/entity-framework-ef-functions-like-vs-string-contains)
 
          <img width="533" alt="like" src="https://github.com/user-attachments/assets/f07b7624-2cac-4a20-8896-b3d18ae291e1">
         
@@ -765,12 +765,12 @@ _NCrunch*
         
     3. **Error: “A possible object cycle was detected” in different versions of ASP.NET Core**
         
-        [Fixing the error “A possible object cycle was detected” in different versions of ASP.NET Core](https://gavilan.blog/2021/05/19/fixing-the-error-a-possible-object-cycle-was-detected-in-different-versions-of-asp-net-core/)
+        Reference Link: [Fixing the error “A possible object cycle was detected” in different versions of ASP.NET Core](https://gavilan.blog/2021/05/19/fixing-the-error-a-possible-object-cycle-was-detected-in-different-versions-of-asp-net-core/)
 
         <img width="748" alt="cycleerror" src="https://github.com/user-attachments/assets/b65d9a39-288a-4def-8594-282eed677f45">
         
     4. Foreign-Key
-        - Link: [How can I retrieve Id of inserted entity using Entity framework?](https://stackoverflow.com/questions/5212751/how-can-i-retrieve-id-of-inserted-entity-using-entity-framework)
+        - Reference Link: [How can I retrieve Id of inserted entity using Entity framework?](https://stackoverflow.com/questions/5212751/how-can-i-retrieve-id-of-inserted-entity-using-entity-framework)
         - `context.Reviews.AddRange(reviews)` will automatically generate the primary key, which can be called directly later. The error occurs due to a conflict; a foreign key needs to reference the primary key for it to work.
 
         <img width="982" alt="seed" src="https://github.com/user-attachments/assets/a09e6930-6813-4fc7-9e34-c5e05c7cd102">
@@ -827,7 +827,7 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YOUR_PASSWORD" -e "MSSQL_PID
 
 ### Add Dockerfile and .dockerignore to Project
 
-[Run an ASP.NET Core app in Docker containers](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-8.0)
+Reference Link: [Run an ASP.NET Core app in Docker containers](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-8.0)
 
 Dockerfile: It uses `dotnet publish` the same way you will do in this section to build and deploy.
 
@@ -959,7 +959,7 @@ docker push ella0110/trillobackend
 
 - if you want to change your image name, use this command:
 
-[Stack Overflow](https://stackoverflow.com/questions/49834454/how-do-you-fix-a-docker-push-error-tag-does-not-exist)
+Reference Link: [Stack Overflow](https://stackoverflow.com/questions/49834454/how-do-you-fix-a-docker-push-error-tag-does-not-exist)
 
 ```bash
 docker tag trillo-backend ella0110/trillobackend
@@ -978,7 +978,7 @@ docker tag trillo-backend ella0110/trillobackend
         
 - Troubleshooting
     1. Dependency issue: On first run, the database may not be ready when back end tries to initialise the database, and cause back end service failing to start.
-        - Link: [Stack Overflow](https://stackoverflow.com/questions/60539114/how-to-wait-for-mssql-in-docker-compose)
+        - Reference Link: [Stack Overflow](https://stackoverflow.com/questions/60539114/how-to-wait-for-mssql-in-docker-compose)
         - Fix: Add **health check** and **depend on** command
 
         <img width="1131" alt="healthcheck" src="https://github.com/user-attachments/assets/2d33f45e-ec43-4093-a486-6cf849952a06">
@@ -986,7 +986,7 @@ docker tag trillo-backend ella0110/trillobackend
     2. When check health, it’s always failed
         - should be `/opt/mssql-tools18/bin/sqlcmd` rather than `/opt/mssql-tools/bin/sqlcmd`, can test it in Docker/Containers/sqlserver/Exec
     3. Error: `[Microsoft][ODBC Driver 18 for SQL Server]SSL Provider: [error:1416F086:SSL routines:tls_process_server_certificate:certificate verify failed:self signed certificate]`
-        - Link: [Stack Overflow](https://stackoverflow.com/questions/71688125/odbc-driver-18-for-sql-serverssl-provider-error1416f086)
+        - Reference Link: [Stack Overflow](https://stackoverflow.com/questions/71688125/odbc-driver-18-for-sql-serverssl-provider-error1416f086)
         - Fix: Add `-C` to health check
 
 ## Deploy Project Image and Database to ECS
@@ -1048,13 +1048,13 @@ Clusters → Create cluster: input **Cluster name**, click **Create**
         
 - Troubleshooting
     1. Error: `Unhandled **exception**. Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific **error** occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, **error**: 35 - An internal **exception** was caught)`
-        - Link: [Stack Overflow](https://stackoverflow.com/questions/58196930/communication-between-containers-in-ecs-task-definition)
+        - Reference Link: [Stack Overflow](https://stackoverflow.com/questions/58196930/communication-between-containers-in-ecs-task-definition)
         - Fix:
 
         <img width="702" alt="host" src="https://github.com/user-attachments/assets/cc2d7c57-30de-466e-9cfc-1579fbb54b9d">
         
     2. Healthcheck can not work
-        - Link: [AWS - HealthCheck](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html)
+        - Reference Link: [AWS - HealthCheck](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html)
         
         ```docker
         CMD-SHELL,/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P '@Aa12345678' -Q 'SELECT 1' -b -o /dev/null
