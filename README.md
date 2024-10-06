@@ -1,29 +1,28 @@
 # Deploying a RESTful API with C#, Docker & AWS ECS
 
-- [Deploying a RESTful API with C#, Docker \& AWS ECS](#deploying-a-restful-api-with-c-docker--aws-ecs)
-  - [C# and DotNet](#c-and-dotnet)
-    - [Basic install](#basic-install)
-    - [Create ASP.Net Web API Project](#create-aspnet-web-api-project)
-    - [Add Ef Core](#add-ef-core)
-    - [Add Controller](#add-controller)
-    - [Automatically Initialise Database](#automatically-initialise-database)
-    - [Add .gitignore for C#](#add-gitignore-for-c)
-    - [Troubleshooting \& Tips](#troubleshooting--tips)
-  - [Docker and SQL Server](#docker-and-sql-server)
-    - [Basic Install](#basic-install-1)
-    - [Run SQL Server](#run-sql-server)
-    - [Beekeeper connect database](#beekeeper-connect-database)
-  - [Build Project Image and Docker Compose](#build-project-image-and-docker-compose)
-    - [Add Dockerfile and .dockerignore to Project](#add-dockerfile-and-dockerignore-to-project)
-    - [Build project image](#build-project-image)
-    - [Docker Compose](#docker-compose)
-    - [Upload Image to Docker Hub](#upload-image-to-docker-hub)
-    - [BufFix \& Tips](#buffix--tips)
-  - [Deploy Project Image and Database to ECS](#deploy-project-image-and-database-to-ecs)
-    - [Create Task definitions](#create-task-definitions)
-    - [Create Clusters](#create-clusters)
-    - [Deploy your task to cluster](#deploy-your-task-to-cluster)
-    - [Troubleshooting \& Tips](#troubleshooting--tips-1)
+- [C# and DotNet](#c-and-dotnet)
+  - [Basic install](#basic-install)
+  - [Create ASP.Net Web API Project](#create-aspnet-web-api-project)
+  - [Add Ef Core](#add-ef-core)
+  - [Add Controller](#add-controller)
+  - [Automatically Initialise Database](#automatically-initialise-database)
+  - [Add .gitignore for C#](#add-gitignore-for-c)
+  - [Troubleshooting \& Tips](#troubleshooting--tips)
+- [Docker and SQL Server](#docker-and-sql-server)
+  - [Basic Install](#basic-install-1)
+  - [Run SQL Server](#run-sql-server)
+  - [Beekeeper connect database](#beekeeper-connect-database)
+- [Build Project Image and Docker Compose](#build-project-image-and-docker-compose)
+  - [Add Dockerfile and .dockerignore to Project](#add-dockerfile-and-dockerignore-to-project)
+  - [Build project image](#build-project-image)
+  - [Docker Compose](#docker-compose)
+  - [Upload Image to Docker Hub](#upload-image-to-docker-hub)
+  - [Troubleshooting \& Tips](#troubleshooting--tips-1)
+- [Deploy Project Image and Database to ECS](#deploy-project-image-and-database-to-ecs)
+  - [Create Task definitions](#create-task-definitions)
+  - [Create Clusters](#create-clusters)
+  - [Deploy your task to cluster](#deploy-your-task-to-cluster)
+  - [Troubleshooting \& Tips](#troubleshooting--tips-2)
 
 ## C# and DotNet
 
@@ -78,6 +77,7 @@ There are two ways to create a Web API project:
 
 There are two common ORM options: EF Core and Dapper, here is the main differences:
 
+![ef](https://github.com/user-attachments/assets/d6bfd0a7-aea1-4e99-9fd5-de51c4b2dda7)
 
 1. Open terminal, run the following commands to install EF Core and Sql Server driver.
     
@@ -290,7 +290,7 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
     
 2. Update HotelsController.cs to add nameof in POST return, to avoid hardcode the action name in CreatedAtAction function.
 
-    <img width="740" alt="imagehotelcontroller" src="https://github.com/user-attachments/assets/aad3619a-1893-4833-800c-73d6ea304c52">
+    <img width="740" alt="imagehotelcontroller" src="https://github.com/user-attachments/assets/8600b236-8ec0-4a8b-9eb2-fd07fcf8704f">
     
 3. Add Controller service to program.cs
     
@@ -525,7 +525,7 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
 
 1. Change program.cs, add `Migrate()` to create database, apply migration and seed data.
 
-    <img width="667" alt="migrate" src="https://github.com/user-attachments/assets/67ed3e78-fb9c-4c3d-aec1-53c26f87850f">
+    <img width="667" alt="migrate" src="https://github.com/user-attachments/assets/17028562-36f7-4c3c-8ff2-9d5701a76a73">
     
 2. Add code that populates the database with data. Create `Data/DbInitializer.cs` with the following code:
     - Data/DbInitializer.cs
@@ -738,24 +738,24 @@ _NCrunch*
     1. Each time the database or tables are changed, **migrations** and **updates** must be executed
     2. Generated Datetime in table: [Generate Values - EF Core](https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations)
 
-         <img width="591" alt="datetime" src="https://github.com/user-attachments/assets/d6beeb52-dc18-4be8-8f66-ed16765fa52b">
+         <img width="591" alt="datetime" src="https://github.com/user-attachments/assets/5b5c95c4-6589-4078-8553-89a81b74096c">
         
     3. Add different table join
 
         [Eager Loading of Related Data](https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager)
         
-        <img width="332" alt="join" src="https://github.com/user-attachments/assets/17ff08e9-b304-4c05-a243-63993669dd20">
+        <img width="332" alt="join" src="https://github.com/user-attachments/assets/bfe05743-e8da-459c-b670-b289d8d62ab9">
         
     4. Add SQL `LIKE` operation: **EF.Functions.Like**
-        
+
         [Entity framework EF.Functions.Like vs string.Contains](https://stackoverflow.com/questions/45708715/entity-framework-ef-functions-like-vs-string-contains)
 
-         <img width="533" alt="like" src="https://github.com/user-attachments/assets/5ffb35fc-47e6-4417-9310-02b2c39e90da">
+         <img width="533" alt="like" src="https://github.com/user-attachments/assets/f07b7624-2cac-4a20-8896-b3d18ae291e1">
         
 - Troubleshooting
     1. [How to connect ASP.Net Core to a SQL Server Docker container on Mac](https://stackoverflow.com/questions/53024227/how-to-connect-asp-net-core-to-a-sql-server-docker-container-on-mac)
 
-        <img width="738" alt="appseting" src="https://github.com/user-attachments/assets/2789e2f2-7958-42d1-ad30-101b3d41852f">
+        <img width="738" alt="appseting" src="https://github.com/user-attachments/assets/74100c14-fddb-4969-89dc-a1a1fd1bf9b3">
         
     2. Error: A connection was successfully established with the server, but then an error occurred during the pre-login handshake. ‣
         
@@ -765,13 +765,13 @@ _NCrunch*
         
         [Fixing the error “A possible object cycle was detected” in different versions of ASP.NET Core](https://gavilan.blog/2021/05/19/fixing-the-error-a-possible-object-cycle-was-detected-in-different-versions-of-asp-net-core/)
 
-        <img width="748" alt="cycleerror" src="https://github.com/user-attachments/assets/9e7f2dc1-0fa1-4605-93eb-68ad574cd9a4">
+        <img width="748" alt="cycleerror" src="https://github.com/user-attachments/assets/b65d9a39-288a-4def-8594-282eed677f45">
         
     4. Foreign-Key
         - Link: [How can I retrieve Id of inserted entity using Entity framework?](https://stackoverflow.com/questions/5212751/how-can-i-retrieve-id-of-inserted-entity-using-entity-framework)
         - `context.Reviews.AddRange(reviews)` will automatically generate the primary key, which can be called directly later. The error occurs due to a conflict; a foreign key needs to reference the primary key for it to work.
 
-        <img width="982" alt="seed" src="https://github.com/user-attachments/assets/18c007ab-d433-47d3-84bd-1fe34560e180">
+        <img width="982" alt="seed" src="https://github.com/user-attachments/assets/a09e6930-6813-4fc7-9e34-c5e05c7cd102">
         
 
 **We have already completed all the code, now we can start deploying our project!**
@@ -806,19 +806,19 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YOUR_PASSWORD" -e "MSSQL_PID
 1. make sure database is running!
 2. create new connection, choose SQL Server
 
-    <img width="512" alt="beekeeper1" src="https://github.com/user-attachments/assets/13e3b0f9-836a-4ed2-9b9f-11af145b18bb">
+    <img width="512" alt="beekeeper1" src="https://github.com/user-attachments/assets/48034824-cb00-4633-9c9d-17334de11c5a">
     
 3. input **User** and **Password**, check ‘**Trust Server Certificate**’, click Connect.
 
-    <img width="529" alt="beekeeper2" src="https://github.com/user-attachments/assets/794a5e54-8b00-429a-beca-152ca7eab94d">
+    <img width="529" alt="beekeeper2" src="https://github.com/user-attachments/assets/8a4d6cb4-1f37-455f-96fa-496a5c764c6e">
     
 4. Correct connection:
 
-    <img width="1312" alt="beekeeper3" src="https://github.com/user-attachments/assets/abff602e-be0f-4d5c-8818-c1850e95c15c">
+    <img width="1312" alt="beekeeper3" src="https://github.com/user-attachments/assets/5b661041-bc3a-4b48-bc0e-d39fbf92c04a">
     
 5. Create database
 
-    <img width="923" alt="beekeeper4" src="https://github.com/user-attachments/assets/c6631060-c934-4afd-b1af-4743fef93bbf">
+    <img width="923" alt="beekeeper4" src="https://github.com/user-attachments/assets/38c2a9b0-5fea-4184-9342-77f076eca79e">
     
 
 ## Build Project Image and Docker Compose
@@ -872,7 +872,7 @@ Dockerfile*
     dotnet publish -c Release -o published 
     ```
 
-    <img width="717" alt="dockerfile" src="https://github.com/user-attachments/assets/72cf29ca-e989-4ed0-8a78-9d70323b36a0">
+    <img width="717" alt="dockerfile" src="https://github.com/user-attachments/assets/05c1ce7d-12f7-4425-9f89-a9309ae54738">
     
 2. Build Project image
     
@@ -954,7 +954,7 @@ docker push ella0110/trillobackend
 docker tag trillo-backend ella0110/trillobackend
 ```
 
-### BufFix & Tips
+### Troubleshooting & Tips
 
 - Tips
     1. Check the health_check log
@@ -970,7 +970,7 @@ docker tag trillo-backend ella0110/trillobackend
         - Link: [Stack Overflow](https://stackoverflow.com/questions/60539114/how-to-wait-for-mssql-in-docker-compose)
         - Fix: Add **health check** and **depend on** command
 
-        <img width="1131" alt="healthcheck" src="https://github.com/user-attachments/assets/908fdc86-4179-4ea2-aa7f-0974a7925616">
+        <img width="1131" alt="healthcheck" src="https://github.com/user-attachments/assets/2d33f45e-ec43-4093-a486-6cf849952a06">
         
     2. When check health, it’s always failed
         - should be `/opt/mssql-tools18/bin/sqlcmd` rather than `/opt/mssql-tools/bin/sqlcmd`, can test it in Docker/Containers/sqlserver/Exec
@@ -992,7 +992,7 @@ docker tag trillo-backend ella0110/trillobackend
     - **Image URI**: mcr.microsoft.com/mssql/server:latest
     - **Environment varaiables**: follow with the section: Run SQL  Server
 
-        <img width="380" alt="envvariable" src="https://github.com/user-attachments/assets/2deba519-07d4-4e6c-8f3c-ba0fc59c9a8e">
+        <img width="380" alt="envvariable" src="https://github.com/user-attachments/assets/a876dfdd-50d2-4961-a0b2-e66e2643d7f5">
         
     - **HealthCheck**: CMD-SHELL,/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P 'your password' -Q 'SELECT 1' -b -o /dev/null
     - Interval: 10
@@ -1004,11 +1004,11 @@ docker tag trillo-backend ella0110/trillobackend
     - **Image URI**: eg. ella0110/trillobackend:20241005.4
     - **Port mappings**
 
-        <img width="765" alt="port" src="https://github.com/user-attachments/assets/3a5bc4dc-7a01-4413-9de9-351de303ea7b">
+        <img width="765" alt="port" src="https://github.com/user-attachments/assets/c5b7ec87-56a8-4705-9e07-828f492ac2ec">
         
     - **Startup dependency ordering**
 
-        <img width="755" alt="depend" src="https://github.com/user-attachments/assets/7e5daeb9-5784-4673-8a6e-51fab3cbc76f">
+        <img width="755" alt="depend" src="https://github.com/user-attachments/assets/2cc04083-aa79-4099-bb1c-8011f843dd16">
         
 8. click **Create**
 
@@ -1016,13 +1016,13 @@ docker tag trillo-backend ella0110/trillobackend
 
 Clusters → Create cluster: input **Cluster name**, click **Create**
 
-<img width="1344" alt="cluster" src="https://github.com/user-attachments/assets/8e09e388-cff1-4865-9ad0-59222dc60931">
+<img width="1344" alt="cluster" src="https://github.com/user-attachments/assets/06818ff9-9ffe-43c9-83fb-a311ee86bfd5">
 
 ### Deploy your task to cluster
 
 1. Choose your task, click **Deploy**→ **Create Service**
 
-    <img width="1350" alt="deploytask" src="https://github.com/user-attachments/assets/21c148b6-4457-431b-8f2f-001d2cba62da">
+    <img width="1350" alt="deploytask" src="https://github.com/user-attachments/assets/1d5e93fd-22a0-4089-b405-49e5a1c6d262">
     
 2. **Choose your Cluster**, then click **Create**
 
@@ -1033,14 +1033,14 @@ Clusters → Create cluster: input **Cluster name**, click **Create**
         
         **Fix:** VPC → Security Groups → click Security group ID → Inbound rules → Edit inbound rules → add a new rule
 
-        <img width="1296" alt="ip" src="https://github.com/user-attachments/assets/6c8a998e-80c6-4ce0-b692-7bf7b7492b11">
+        <img width="1296" alt="ip" src="https://github.com/user-attachments/assets/31e56304-48d1-4299-9d16-b4f14f36d197">
         
 - Troubleshooting
     1. Error: `Unhandled **exception**. Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific **error** occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, **error**: 35 - An internal **exception** was caught)`
         - Link: [Stack Overflow](https://stackoverflow.com/questions/58196930/communication-between-containers-in-ecs-task-definition)
         - Fix:
 
-        <img width="702" alt="host" src="https://github.com/user-attachments/assets/12963722-5d0a-4bef-8513-57d7fe7d7226">
+        <img width="702" alt="host" src="https://github.com/user-attachments/assets/cc2d7c57-30de-466e-9cfc-1579fbb54b9d">
         
     2. Healthcheck can not work
         - Link: [AWS - HealthCheck](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html)
@@ -1049,4 +1049,4 @@ Clusters → Create cluster: input **Cluster name**, click **Create**
         CMD-SHELL,/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P '@Aa12345678' -Q 'SELECT 1' -b -o /dev/null
         ```
 
-        ![healthcheckecs](https://github.com/user-attachments/assets/0b3bf1d1-c2d4-4405-a346-c31416bea002)
+        ![healthcheckecs](https://github.com/user-attachments/assets/ecb735cb-35f9-47a6-bb75-c06768655eca)
