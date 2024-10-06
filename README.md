@@ -234,6 +234,8 @@ There are two common ORM options: EF Core and Dapper, here is the main differenc
     - Database: replace ‘trillo’ with your database name;
     - Attention **User Id** need a space;
 4. Add **appsettings.Production.json** for production environement.
+   - For docker compose: Data Source=sqlserver,1433;
+   - For ECS: Data Source=localhost,1433
     
     ```csharp
     {
@@ -848,6 +850,8 @@ EXPOSE 8080
 WORKDIR /app
 COPY --link --from=build /app .
 USER $APP_UID
+
+# Write your project name
 ENTRYPOINT ["./TrilloBackend"]
 ```
 
@@ -866,7 +870,7 @@ Dockerfile*
 
 ### Build project image
 
-1. navigate to the project folder, run the **dotnet publish** command: (I have written this command in Dockerfile, we can **ignore** this step)
+1. **Optional**: navigate to the project folder, run the **dotnet publish** command: (I have written this command in Dockerfile, we can **ignore** this step)
     
     ```bash
     dotnet publish -c Release -o published 
@@ -882,7 +886,7 @@ Dockerfile*
     docker build -t ella0110/trillobackend:20241005.1 . 
     ```
     
-3. Run image. If your image doesn’t need database, then you can run it directly. If you need database, you should use docker compose which is in the next section.
+3. **Optional**: Run image. If your image doesn’t need database, then you can run it directly. If you need database, you should use docker compose which is in the next section.
     
     ```bash
     docker run -it --rm -p 8080:8080 ella0110/trillobackend:20241005.1
@@ -900,9 +904,12 @@ Dockerfile*
     
 2. **Define services in a Compose file**
     
-    Docker Compose simplifies the control of your entire application stack, making it easy to manage services, networks, and volumes in a single, comprehensible YAML configuration file. 
+    - Docker Compose simplifies the control of your entire application stack, making it easy to manage services, networks, and volumes in a single, comprehensible YAML configuration file. 
     
-    Create a file called `compose.yaml` in your project directory and paste the following:
+    - Create a file called `compose.yaml` in your project directory and paste the following:
+      - Change **image** as your image name;
+      - Change **ports**
+      - Change **Environment Variable and healthcheck password** as your database password
     
     ```yaml
     services:
@@ -931,12 +938,16 @@ Dockerfile*
           start_period: 10s
     ```
     
-3. Run docker compose
+4. Run docker compose
     
     ```bash
     docker compose up
     ```
     
+
+**Congratulation!!! We have already run docker compose, you need to attention these step:**
+- if you only change yml, you can just delete container in docker and run `docker compose up` again!
+- if you change other file like cs or Dockerfile, you need to run `docker build -t testdemo-backend .`(your project image name) and then delete container in docker and run `docker compose up`!
 
 ### Upload Image to Docker Hub
 
